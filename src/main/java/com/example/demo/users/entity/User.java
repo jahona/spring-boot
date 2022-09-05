@@ -49,4 +49,16 @@ public class User {
     public Boolean getExpired() {
         return expired;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public void setExpired(Boolean expired) {
+        this.expired = expired;
+    }
 }

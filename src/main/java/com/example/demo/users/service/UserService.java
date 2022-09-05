@@ -11,8 +11,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.users.dto.UserCreateDto;
+import com.example.demo.users.dto.UserDeleteDto;
 import com.example.demo.users.dto.UserGetDto;
 import com.example.demo.users.dto.UserResponseDto;
+import com.example.demo.users.dto.UserUpdateDto;
 import com.example.demo.users.entity.User;
 import com.example.demo.users.repository.UserRepository;
 
@@ -53,5 +55,33 @@ public class UserService {
                 .collect(Collectors.toList());
             
         return result;
+    }
+
+    public User update(UserUpdateDto userUpdateDto) {
+        Long id = userUpdateDto.getId();
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        User user = null;
+        if (optionalUser.isPresent()) {
+            user = optionalUser.get();
+            user.setName(userUpdateDto.getName());
+            user.setAge(userUpdateDto.getAge());
+            userRepository.save(user);
+        }
+
+        return user;
+    }
+
+    public User delete(UserDeleteDto userDeleteDto) {
+        Long id = userDeleteDto.getId();
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        User user = null;
+        if (optionalUser.isPresent()) {
+            user = optionalUser.get();
+            userRepository.delete(user);
+        }
+
+        return user;
     }
 }
