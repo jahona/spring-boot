@@ -18,6 +18,13 @@ public class User {
     @Column(name = "age")
     private Integer age;
 
+    @Column(name = "expired")
+    private Boolean expired = false;
+
+    public User() {
+
+    }
+    
     public User(String name) {
         this.name = name;
     }
@@ -30,12 +37,16 @@ public class User {
     public Long getId() {
         return id;
     }
-    
+
     public String getName() {
         return name;
     }
 
     public Integer getAge() {
         return age;
+    }
+
+    public Boolean getExpired() {
+        return expired;
     }
 }
