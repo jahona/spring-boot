@@ -23,11 +23,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserResponseDto create(UserCreateDto userCreateDto) {
-        User user = new User(userCreateDto.getName(), userCreateDto.getAge());
-
-        user = userRepository.save(user);
-        return new UserResponseDto(user.getId(), user.getName(), user.getAge());
+    public User create(User user) {
+        return userRepository.save(user);
     }
 
     public UserResponseDto get(UserGetDto userGetDto) {
